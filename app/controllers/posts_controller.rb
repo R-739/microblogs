@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :edit, :update]
   
   
   def create
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to root_url
     else
-      @posts = current_user.posts.order(id: :desc).page(params[:page])
+      @posts = current_user.feed_posts.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render 'toppages/index'
     end
@@ -22,11 +22,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-   @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:success] = '投稿内容は正常に更新されました'
       redirect_to root_url

@@ -15,7 +15,7 @@
                     <li class="dropdown-item"><%= link_to 'プロフィール', user_path(current_user) %></li>
                     <li class="dropdown-divider"></li>
                     <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
-                    <li class="dropdown-item"><%= link_to '退会', user_path(current_user), method: :delete %></li>
+                    <li class="dropdown-item"><%= link_to '退会', user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか?" } %></li>
                 </ul>
             </li>
             <% else %>
