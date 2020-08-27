@@ -1,0 +1,10 @@
+<h1>投稿内容編集ページ</h1>
+
+<%= form_with(model: @post, local: true) do |f| %>
+    <%= f.label :content, '投稿内容' %>
+    <%= f.text_field :content %>
+    
+    <%= f.submit '投稿' %>
+<% end %>
+
+<%= link_to '一覧に戻る', root_path %>
